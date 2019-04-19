@@ -11,14 +11,62 @@ use rand::Rng;
 use termion::clear;
 use termion::cursor;
 
-fn printHangman(lives: i32) {
+fn print_hangman(lives: i32) {
     match lives {
-        0 => { println!("Dead!"); },
-        1 => { println!("Awful"); },
-        2 => { println!("Bad"); },
-        3 => { println!("OK"); },
-        4 => { println!("Good!"); },
-        _ => { println!("Great!"); }
+        0 => {
+            println!(" _ _ _ _ _ _ _");
+            println!("|             |");
+            println!("|           (X^X)");
+            println!("|             |");
+            println!("|            /|\\");
+            println!("|             |");
+            println!("|            / \\");
+            for _ in 0..2 { println!("|"); }
+        },
+        1 => {
+            println!(" _ _ _ _ _ _ _");
+            println!("|             |");
+            println!("|             O");
+            println!("|             |");
+            println!("|            /|\\");
+            println!("|             |");
+            println!("|            / \\");
+            for _ in 0..2 { println!("|"); }
+        },
+        2 => {
+            println!(" _ _ _ _ _ _ _");
+            println!("|             |");
+            println!("|             O");
+            println!("|             |");
+            println!("|            /|\\");
+            println!("|             |");
+            for _ in 0..3 { println!("|"); }
+        },
+        3 => {
+            println!(" _ _ _ _ _ _ _");
+            println!("|             |");
+            println!("|             O");
+            println!("|             |");
+            println!("|            / \\");
+            for _ in 0..4 { println!("|"); }
+        },
+        4 => {
+            println!(" _ _ _ _ _ _ _");
+            println!("|             |");
+            println!("|             O");
+            println!("|             |");
+            for _ in 0..5 { println!("|"); }
+        },
+        5 => {
+            println!(" _ _ _ _ _ _ _");
+            println!("|             |");
+            println!("|             O");
+            for _ in 0..6 { println!("|"); }
+        },
+        _ => {
+            println!(" _ _ _ _ _ _ _");
+            for _ in 0..8 { println!("|"); }
+        }
     }
 }
 
@@ -46,7 +94,7 @@ fn main() {
     let phrasebank: Vec<&str> = phrases.lines().collect(); // convert phrases string to vector
     let mut rng = rand::thread_rng(); // random number generator
     let phrase = phrasebank[rng.gen_range(0, phrasebank.len())];
-    let mut lives: i32 = 5;
+    let mut lives: i32 = 6;
     let mut phrase_letters: HashSet<char> = HashSet::new();
     let mut guessed_letters: HashSet<char> = HashSet::new();
     let mut input: String;
@@ -72,7 +120,7 @@ fn main() {
         for letter in guessed_letters.iter() { print!("{}", letter); }
         print!("\n\n");
 
-        printHangman(lives);
+        print_hangman(lives);
         print!("\n");
 
         for character in phrase.chars() {
@@ -111,7 +159,7 @@ fn main() {
         print!("{}", cursor::Goto(1, 1));
     }
 
-    printHangman(lives);
+    print_hangman(lives);
     print!("\n");
 
     for character in phrase.chars() {
