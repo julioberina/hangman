@@ -19,18 +19,19 @@ fn main() {
     };
 
     // Read the file contents into a string, returns `io::Result<usize>`
-    let mut words = String::new();
+    let mut phrases = String::new();
 
-    match file.read_to_string(&mut words) {
+    match file.read_to_string(&mut phrases) {
         Err(why) => panic!("couldn't read {}: {}", display,
                                                    why.description()),
         Ok(_) => (),
     }
 
-    let wordbank: Vec<&str> = words.lines().collect(); // convert words string to vector
+    let phrasebank: Vec<&str> = phrases.lines().collect(); // convert words string to vector
     let mut rng = rand::thread_rng(); // random number generator
 
-    for c in wordbank[rng.gen_range(0, wordbank.len())].chars() {
+    // grab random word from wordbank, iterate through its chars
+    for c in phrasebank[rng.gen_range(0, phrasebank.len())].chars() {
         print!("{} ", c);
     }
 
