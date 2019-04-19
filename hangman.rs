@@ -9,6 +9,17 @@ use rand::Rng;
 use termion::clear;
 use termion::cursor;
 
+fn printHangman(lives: i32) {
+    match lives {
+        0 => { println!("Dead!"); },
+        1 => { println!("Awful"); },
+        2 => { println!("Bad"); },
+        3 => { println!("OK"); },
+        4 => { println!("Good!"); },
+        _ => { println!("Great!"); }
+    }
+}
+
 fn main() {
     // Create a path to the desired file
     let path = Path::new("words.txt");
@@ -41,9 +52,14 @@ fn main() {
     println!("Guess the sentence");
     print!("\n");
 
+
+
     for c in phrase.chars() {
         print!("{} ", c);
     }
 
-    print!("\n");
+    print!("\n\n");
+
+    if lives == 0 { println!("Sorry!  You lose!"); }
+    else { println!("Congratulations!  You guessed the phrase!"); }
 }
