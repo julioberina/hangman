@@ -1,0 +1,11 @@
+[package]
+name = "hangman"
+version = "0.0.1"
+authors = ["J. Berina <julioberina@gmail.com>"]
+
+[[bin]]
+name = "hangman"
+path = "hangman.rs"
+
+[dependencies]
+rand = "0.6.0" # Or a newer version
