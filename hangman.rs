@@ -50,7 +50,7 @@ fn main() {
     let mut phrase_letters: HashSet<char> = HashSet::new();
     let mut guessed_letters: HashSet<char> = HashSet::new();
     let mut input: String;
-    let mut result: String = String::from("Guess the phrase"); // Good or bad guess
+    let mut result: String = String::from("Guess the phrase"); // Feedback of user guess
 
     // insert phrase chars in phrase_letters
     for c in phrase.chars() {
