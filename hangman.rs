@@ -46,11 +46,11 @@ fn main() {
     let phrasebank: Vec<&str> = phrases.lines().collect(); // convert phrases string to vector
     let mut rng = rand::thread_rng(); // random number generator
     let phrase = phrasebank[rng.gen_range(0, phrasebank.len())];
-    let mut lives = 5;
+    let mut lives: i32 = 5;
     let mut phrase_letters: HashSet<char> = HashSet::new();
     let mut guessed_letters: HashSet<char> = HashSet::new();
-    let mut input = String::new();
-    let mut result = String::from("Guess the phrase"); // Good or bad guess
+    let mut input: String;
+    let mut result: String = String::from("Guess the phrase"); // Good or bad guess
 
     // insert phrase chars in phrase_letters
     for c in phrase.chars() {
