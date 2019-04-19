@@ -72,7 +72,7 @@ fn print_hangman(lives: i32) {
 
 fn main() {
     // Create a path to the desired file
-    let path = Path::new("words.txt");
+    let path = Path::new("phrases.txt");
     let display = path.display();
 
     // Open the path in read-only mode, returns `io::Result<File>`
@@ -98,7 +98,7 @@ fn main() {
     let mut phrase_letters: HashSet<char> = HashSet::new();
     let mut guessed_letters: HashSet<char> = HashSet::new();
     let mut input: String;
-    let mut result: String = String::from("Guess the phrase"); // Feedback of user guess
+    let mut result: String = String::from("Welcome to Hangman!"); // Feedback of user guess
 
     // insert phrase chars in phrase_letters
     for c in phrase.chars() {
@@ -110,11 +110,10 @@ fn main() {
     // Clear screen
     print!("{}", clear::All);
     print!("{}", cursor::Goto(1, 1));
-    println!("Welcome to Hangman!");
-    print!("\n");
 
     while !phrase_letters.is_subset(&guessed_letters) && lives > 0 {
-        println!("{}", result);
+        println!("{}\n", result);
+        println!("Guess the phrase");
         print!("Lives: {}   Guessed letters: ", lives);
 
         for letter in guessed_letters.iter() { print!("{}", letter); }
