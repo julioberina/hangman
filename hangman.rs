@@ -1,10 +1,13 @@
 extern crate rand;
+extern crate termion;
 
 use std::error::Error;
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
 use rand::Rng;
+use termion::clear;
+use termion::cursor;
 
 fn main() {
     // Create a path to the desired file
@@ -27,22 +30,20 @@ fn main() {
         Ok(_) => (),
     }
 
-    let phrasebank: Vec<&str> = phrases.lines().collect(); // convert words string to vector
+    let phrasebank: Vec<&str> = phrases.lines().collect(); // convert phrases string to vector
     let mut rng = rand::thread_rng(); // random number generator
+    let phrase = phrasebank[rng.gen_range(0, phrasebank.len())];
+    let mut lives = 5;
 
-    // grab random word from wordbank, iterate through its chars
-    for c in phrasebank[rng.gen_range(0, phrasebank.len())].chars() {
+    print!("{}", clear::All);
+    print!("{}", cursor::Goto(1, 1));
+    println!("Welcome to Hangman!");
+    println!("Guess the sentence");
+    print!("\n");
+
+    for c in phrase.chars() {
         print!("{} ", c);
     }
 
     print!("\n");
-
-    // println!("Contents of wordbank:\n");
-    // for i in 0..wordbank.len() {
-    //     println!("{}", wordbank[i]);
-    // }
-    //
-    // for _ in 0..10 {
-    //     println!("{}", rng.gen_range(0, wordbank.len()));
-    // }
 }

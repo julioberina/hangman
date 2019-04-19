@@ -9,3 +9,4 @@ path = "hangman.rs"
 
 [dependencies]
 rand = "0.6.0" # Or a newer version
+termion = "*"
